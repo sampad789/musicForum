@@ -34,13 +34,20 @@ public class AdminController {
 		drepository.delete(discussionId);
 		return "redirect:../blog";
 	}
-
+	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String editBook(@PathVariable("id") Long discussionID, Model model) {
+		model.addAttribute("discussion", drepository.findOne(discussionID));
+		model.addAttribute("genres", grepository.findAll());
+		return "editpost";
+		}
 	@RequestMapping(value = "/add")
 	public String addPost(Model model) {
 		model.addAttribute("discussion", new Discussion());
 		model.addAttribute("genres", grepository.findAll());
 		return "newpost";
 	}
+	
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@Valid Discussion discussion,BindingResult bindingResult,Model model) {

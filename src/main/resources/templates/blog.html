@@ -35,10 +35,13 @@
     		</textarea >
     		</td>
     		
- 		<td><a th:href="@{/delete/{id}(id=${discussion.id})}" class ="btn btn-danger">Delete</a></td>    		
+ 		<td><a th:href="@{/delete/{id}(id=${discussion.id})}" class ="btn btn-danger">Delete</a>
+ 		<a th:href="@{/edit/{id}(id=${discussion.id})}" class = "btn btn-success">Edit</a>
+ 		</td>    		
     	</tr>
      </table>
-	 <a href="/add" class = "btn btn-success">Add New Discussion to the forum</a>   
+	 <a href="/add" class = "btn btn-success">Add New Discussion to the forum</a>  
+	  
 	 </div> 	
 </body>
 </html>
