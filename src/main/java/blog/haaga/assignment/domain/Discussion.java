@@ -1,41 +1,62 @@
 package blog.haaga.assignment.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Discussion {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private long id;
+    @NotNull
+    @Size(min=2, max=30)
     private String name;
+    @NotNull
+    @Size(min = 1, max = 100)
     private String email;
-    private String genre;
+    @NotNull
     private String album ;
+    @NotNull
     private String artist;
-    private String discussion;
+    @Column (length=1000000)
+    @Lob
+    @NotNull
+    @Size(min = 1, max = 100000)
+    private String thought;
    
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "genreid")
+    private Genre genre;
 
     public Discussion() {}
 
-	public Discussion(String name,String email, String genre, String album,String artist, String discussion ) {
+	public Discussion(String name,String email,String album,String artist, String thought,Genre genre) {
 		super();
 		this.name = name;
 		this.email = email;
-		this.genre = genre;
 		this.album = album;
 		this.artist = artist;
-		this.discussion = discussion;
-		
+		this.thought = thought;
+		this.genre = genre;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -55,14 +76,6 @@ public class Discussion {
 		this.email = email;
 	}
 
-	public String getGenre() {
-		return genre;
-	}
-
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
-
 	public String getAlbum() {
 		return album;
 	}
@@ -79,18 +92,29 @@ public class Discussion {
 		this.artist = artist;
 	}
 
-	public String getDiscussion() {
-		return discussion;
+	public String getThought() {
+		return thought;
 	}
 
-	public void setDiscussion(String discussion) {
-		this.discussion = discussion;
+	public void setThought(String thought) {
+		this.thought = thought;
+	}
+
+	public Genre getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Genre genre) {
+		this.genre = genre;
 	}
 
 	@Override
 	public String toString() {
-		return "Discussion [id=" + id + ", name=" + name + ", email=" + email + ", genre=" + genre + ", album=" + album
-				+ ", artist=" + artist + ", discussion=" + discussion + "]";
+		return "Discussion [id=" + id + ", name=" + name + ", email=" + email + ", album=" + album + ", artist="
+				+ artist + ", thought=" + thought + ", genre=" + genre + "]";
 	}
+
 	
- }
+	
+
+}

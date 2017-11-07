@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>New post page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="Container-fluid">
+		<h1 align="Center">Post your new discussion here.</h1>
+		<form th:object="${discussion}" action="#" th:action= "@{save}" method="post">
+			<div class="form-group">
+				<label for="name">Name:</label>
+			<input type="text"	class="form-control" id="name" placeholder= "Enter your Name" th:field="*{name}" />
+			<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div>
+
+			</div>
+
+			<div class="form-group">
+				<label for="email">Email:</label>
+			<input type="text"	class="form-control" id="email" placeholder= "Enter your email" th:field="*{email}" />
+				<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</div>
+
+			</div>
+
+			<div class="form-group">
+				<label for ="grlist">Genre:</label>
+			<select id = "grlist" th:field="*{genre}" class= "form-control">
+			
+			<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
+			
+			</select>
+			
+			</div>
+			<div class="form-group">
+				<label for="album">Album:</label>
+			<input type="text"	class="form-control" id="album" placeholder= "Enter the Album name" th:field="*{album}" />
+			<div th:if="${#fields.hasErrors('album')}" th:errors="*{album}">Error</div>
+
+
+			</div>
+			
+			
+
+			<div class="form-group">
+				<label for="artist">Artist:</label>
+			<input type="text"	class="form-control" id="artist" placeholder= "Enter the Artist" th:field="*{artist}" />
+				<div th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}">Error</div>
+			</div>
+
+			<div class="form-group">
+				<label for="thought">Your Thoughts :</label>
+				<textarea name="thought" rows="5" cols="10" class="form-control"
+					id="thought" autofocus="autofocus"
+					placeholder="Write what you think." th:field="*{thought}">
+           
+            </textarea>
+            <div th:if="${#fields.hasErrors('thought')}" th:errors="*{thought}">Error</div>
+			</div>
+			<br />
+
+			<p>
+				<input type="submit" value="Submit" class="btn btn-primary" />
+			</p>
+
+		</form>
+
+	</div>
+</body>
+</html>

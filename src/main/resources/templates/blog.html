@@ -6,7 +6,9 @@
      <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
+
 	<h1 align ="Center"> Welcome to Music Forum</h1>
+	<div class = "container-fluid">
 	 <table class="table table-striped">
    
     
@@ -16,7 +18,7 @@
 		    <th>Genre </th>
 		     <th>Album </th>
 		      <th>Artist </th>
-		    <th>Discussion</th>
+		    <th>Your Thoughts</th>
 		    <th> Action</th>
 		</tr>  
     	<tr th:each = "discussion: ${discussions}">
@@ -28,14 +30,15 @@
     	
     	<td>
     	
-    		<textarea   rows="4" cols="50" readonly="readonly"  th:text="${discussion.discussion}" >
+    		<textarea   rows="4" cols="50"  readonly="readonly"  th:text="${discussion.thought}" >
     		    		
     		</textarea >
     		</td>
     		
- 		<td><a th:href="@{/delete/{id}(id=${discussion.id})}">Delete</a></td>    		
+ 		<td><a th:href="@{/delete/{id}(id=${discussion.id})}" class ="btn btn-danger">Delete</a></td>    		
     	</tr>
      </table>
-	 <a href="/add">Add New Discussion to the forum</a>    	
+	 <a href="/add" class = "btn btn-success">Add New Discussion to the forum</a>   
+	 </div> 	
 </body>
 </html>
