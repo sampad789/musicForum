@@ -37,6 +37,7 @@ public class AssignmentApplication {
 			grepository.save(new Genre ("RAP")); 
 			grepository.save(new Genre ("Jazz")); 
 			grepository.save(new Genre ("Soul"));
+			grepository.save(new Genre ("Reggae"));
 			
 
 		log.info("Starting a example discussion.");

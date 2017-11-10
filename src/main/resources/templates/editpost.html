@@ -6,23 +6,45 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}"/>
    </head>
    <body>
+ 
     <h1 align ="center">Edit book</h1>
-	<div>
+	<div class ="container-fluid">
 	
-	<form th:object="${discussion}" th:action="@{../save}" action="#" method="post">
+	<form th:object="${discussion}" th:action="@{../savenew}" action="#" method="post">
 		<input type="hidden" th:field="*{id}" class="form-control"/>
-	    <input type="text" th:field="*{name}" />
-	    <input type="text" th:field="*{email}" />
-	    <input type="text" th:field="*{artist}" />
-	    <input type="text" th:field="*{album}" />
-	    <input type="text" th:field="*{thought}" /> 
-		<select id = "ctlist" th:field="*{genre}" class= "form-control">
+		<table class="table table-bordered">
+		<tr>
+		    <th>Name</th>
+		    <th>Email</th>
+		    <th>Artist</th>
+		    <th>Album</th>
+		    <th>Genre</th>
+		    <th>Thoughts</th>
+		    <th>Action</th>
+		  </tr>
+		  <tr>
+	    <td><input type="text" th:field="*{name}" /></td>
+	   <td> <input type="text" th:field="*{email}" /></td>
+	   <td> <input type="text" th:field="*{artist}" /></td>
+	   <td> <input type="text" th:field="*{album}" /></td>
+	   <td><select id = "ctlist" th:field="*{genre}" class= "form-control">
 			<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
-				</select>
-	     <input type="submit" class="btn btn-success" value="Save"></input>
+				</select></td>
+	  <td>
+    	
+    		<textarea   rows="4" cols="50"  readonly="readonly"  th:text="${discussion.thought}" >
+    		    		
+    		</textarea >
+    		</td>
+		
+	    <td> <input type="submit" class="btn btn-success" value="Save"></input></td>
+	  </tr>  
+	  </table> 
 	</form>
 	
+	
 	</div>
+	
 </body>
 </html>
         

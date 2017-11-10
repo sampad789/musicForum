@@ -15,6 +15,7 @@ import blog.haaga.assignment.domain.Discussion;
 import blog.haaga.assignment.domain.DiscussionRepository;
 import blog.haaga.assignment.domain.GenreRepository;
 
+
 @Controller
 
 public class AdminController {
@@ -58,6 +59,11 @@ public class AdminController {
 		}
 		drepository.save(discussion);
 		return "redirect:blog";
+	}
+	@RequestMapping(value = "/savenew", method = RequestMethod.POST)
+	public String save(Discussion discussion) {
+		drepository.save(discussion);
+		return "blog";
 	}
 
 }
