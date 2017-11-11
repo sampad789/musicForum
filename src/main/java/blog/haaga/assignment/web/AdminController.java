@@ -1,5 +1,7 @@
 package blog.haaga.assignment.web;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import blog.haaga.assignment.domain.Discussion;
 import blog.haaga.assignment.domain.DiscussionRepository;
 import blog.haaga.assignment.domain.GenreRepository;
+import fi.hh.bookstore.bookstore.domain.Book;
 
 
 @Controller
@@ -65,5 +69,13 @@ public class AdminController {
 		drepository.save(discussion);
 		return "blog";
 	}
-
+	@RequestMapping(value="discussions", method=RequestMethod.GET)
+    public @ResponseBody List<Discussion> disListRest(){
+    		return (List<Discussion>) drepository.findAll(); 
+    }
+    
+    @RequestMapping(value="/discussion/{id}", method = RequestMethod.GET)
+    public @ResponseBody Discussion findDisRest(@PathVariable("id") Long discussionId) {	
+    		return drepository.findOne(discussionId);
+   }
 }
