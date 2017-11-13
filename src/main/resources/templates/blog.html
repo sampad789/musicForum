@@ -33,6 +33,11 @@
               <li class="active"><a href="/add">New post</a></li>
             </ul>
           </div>
+          <div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+		</form>
+	</div>
         </div>
       </div>
 
@@ -42,7 +47,7 @@
 
 	<div class="form-group">
 		<div class="container-fluid">
-		<p style ="font-size:36px" align="center">MUSIFY</p> 
+		<h3 th:inline="text" align="center">Welcome To Musify -[[${#httpServletRequest.remoteUser}]]</h3>
 		<hr style=" height:13px ; border:none;color :#333;background-color:#333;" />
 		<span class="align-right">
            <a href="/add" class = "btn btn-success" >Add New Discussion to the forum</a> 

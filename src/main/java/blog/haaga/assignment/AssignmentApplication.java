@@ -11,6 +11,9 @@ import blog.haaga.assignment.domain.Discussion;
 import blog.haaga.assignment.domain.DiscussionRepository;
 import blog.haaga.assignment.domain.Genre;
 import blog.haaga.assignment.domain.GenreRepository;
+import blog.haaga.assignment.domain.User;
+import blog.haaga.assignment.domain.UserRepository;
+
 
 @SpringBootApplication
 public class AssignmentApplication {
@@ -21,7 +24,7 @@ public class AssignmentApplication {
 	}
 
 	@Bean
-	public CommandLineRunner blogSpot(DiscussionRepository drepository,GenreRepository grepository) {
+	public CommandLineRunner blogSpot(DiscussionRepository drepository,GenreRepository grepository ,UserRepository urepository) {
 		return (args) -> {
 			log.info("save a couple of Genres");
 			grepository.save(new Genre ("Metal")); 
@@ -46,6 +49,11 @@ public class AssignmentApplication {
 			drepository.save(new Discussion("josiah singh", "jsingh@gmail.com", "Cowboys From Hell",
 					"Pantera", "This is just a demo for the topics to be used for the discussions",grepository.findByName("EDM").get(0)));
 			
+			log.info("created users" );
+				User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			 	User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+						urepository.save(user1);
+						urepository.save(user2);
 
 			log.info("Get all the discussions");
 			for (Discussion discussion : drepository.findAll()) {
