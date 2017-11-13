@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import blog.haaga.assignment.domain.Discussion;
 import blog.haaga.assignment.domain.DiscussionRepository;
 import blog.haaga.assignment.domain.GenreRepository;
-import fi.hh.bookstore.bookstore.domain.Book;
+
 
 
 @Controller
@@ -28,12 +29,18 @@ public class AdminController {
 	@Autowired
 	private GenreRepository grepository;
 
+	@RequestMapping(value ="/login")
+	public String login(){
+		return "login";
+	}
+	
 	@RequestMapping(value = "/blog")
 	public String bloggers(Model model) {
 		model.addAttribute("discussions", drepository.findAll());
 		return "blog";
 	}
-
+	//authorizing the admin only to delete the post but the user can edit it 
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteDiscussion(@PathVariable("id") Long discussionId, Model model) {
 		drepository.delete(discussionId);
@@ -64,16 +71,18 @@ public class AdminController {
 		drepository.save(discussion);
 		return "redirect:blog";
 	}
+	//Saving a new post
 	@RequestMapping(value = "/savenew", method = RequestMethod.POST)
 	public String save(Discussion discussion) {
 		drepository.save(discussion);
 		return "blog";
 	}
+	//Rest service to get all discussions
 	@RequestMapping(value="discussions", method=RequestMethod.GET)
     public @ResponseBody List<Discussion> disListRest(){
     		return (List<Discussion>) drepository.findAll(); 
     }
-    
+    //Rest service to get discussions by id  
     @RequestMapping(value="/discussion/{id}", method = RequestMethod.GET)
     public @ResponseBody Discussion findDisRest(@PathVariable("id") Long discussionId) {	
     		return drepository.findOne(discussionId);
