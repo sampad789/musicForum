@@ -1,60 +1,74 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Start page
-
-</title>
+<title>Start page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
-	<style type="text/css">
-	tr.spaceUnder >td {
-	padding-bottom:4em;
+
+<style type="text/css">
+tr.spaceUnder>td {
+	padding-bottom: 4em;
+}
+
+span {
+	width: 90%;
+	display: inline-block;
+}
+
+span.align-right {
+	text-align: right;
 	}
-	 span { width:90%; display:inline-block; }
-    span.align-right { text-align:right; }
-    
-    .main_class{
-    background-color : ":#44474c";
-    }
-
-	</style> 		
-</head>
-<body class ="main_class" >
-
 	
-  <div class="navbar navbar-inverse navbar-top">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="/blog">Home</a>
-          </div>
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/add">New post</a></li>
-            </ul>
-          </div>
-          <div class="col-md-4" style="padding:20px 0">
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" class="btn btn-danger"/>
-		</form>
-	</div>
-        </div>
-      </div>
+	body {
+	  
+    background-color: #cccccc;
+	
+	
+	
+}
+</style>
 
-<div class="header">
-  <img src="images/Logomakr_0xi2CH.png"  alt="logo"  width="150" height="150" align="right" />
-</div>
+
+</head>
+<body>
+
+
+	<div class="navbar navbar-inverse navbar-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/blog">Home</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/add">New post</a></li>
+				</ul>
+			</div>
+			<div class="col-md-4" style="padding: 20px 0">
+				<form th:action="@{/logout}" method="post">
+					<input type="submit" value="Sign Out" class="btn btn-danger" />
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="header">
+		<img src="images/Logomakr_0xi2CH.png" alt="logo" width="150"
+			height="150" align="right" />
+	</div>
 
 	<div class="form-group">
 		<div class="container-fluid">
-		<h3 th:inline="text" align="center">Welcome To Musify -[[${#httpServletRequest.remoteUser}]]</h3>
-		<hr style=" height:13px ; border:none;color :#333;background-color:#333;" />
-		<span class="align-right">
-           <a href="/add" class = "btn btn-success" >Add New Discussion to the forum</a> 
-        </span>
-    
-		
-			<table id ="table1">
+			<h3 th:inline="text" align="center">Welcome To Musify
+				-[[${#httpServletRequest.remoteUser}]]</h3>
+			<hr
+				style="height: 13px; border: none; color: #333; background-color: #333;" />
+			<span class="align-right"> <a href="/add"
+				class="btn btn-success">Add New Discussion to the forum</a>
+			</span>
+			
+
+			<table id="table1">
 				<tr>
 
 				</tr>
@@ -82,28 +96,27 @@
 				</tr>
 				<tr>
 					<th>Your Thoughts:</th>
-					<td><textarea rows="10" cols="100" readonly="readonly"
+					<td><textarea rows="10" cols="100" readonly="readonly" style="background-color:Black; color:Lime;"
 							th:text="${discussion.thought}">
     		    		
     		</textarea></td>
-    		
 				<tr class="spaceUnder">
-					
+
 					<td><a th:href="@{/delete/{id}(id=${discussion.id})}"
 						class="btn btn-danger">Delete</a> <a
 						th:href="@{/edit/{id}(id=${discussion.id})}"
-						class="btn btn-success" > Edit</a> </td>
-						
+						class="btn btn-success"> Edit</a></td>
+
 				</tr>
-				
+
 				</tr>
 				</tr>
 
 			</table>
-		 
+
 		</div>
-	
+
 	</div>
-	
+
 </body>
 </html>
