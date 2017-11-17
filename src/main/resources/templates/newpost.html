@@ -48,6 +48,12 @@
 			<input type="text"	class="form-control" id="artist" placeholder= "Enter the Artist" th:field="*{artist}" />
 				<div th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}">Error</div>
 			</div>
+			
+			<div class="form-group">
+				<label for="artist">Catch Phrase</label>
+			<input type="text"	class="form-control" id="artist" placeholder= "Enter your Catchphrase" th:field="*{catchphrase}" />
+				<div th:if="${#fields.hasErrors('catchphrase')}" th:errors="*{catchphrase}">Error</div>
+			</div>
 
 			<div class="form-group">
 				<label for="thought">Your Thoughts :</label>

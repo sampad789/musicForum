@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View</title>
+</head>
+<body>
+
+
+<div class="container">
+	<article>
+		<h2 th:text="${discussion.catchphrase}"></h2>
+		<div >
+			<i>Posted on </i>
+			<span th:text="${#dates.format(discussion.date,'dd-MM-yyyy')}">20-10-2017</span>
+			<i>.By</i>
+			<span th:text="${discussion.name}"></span>
+		</div>
+		
+		<p th:utext="${discussion.thought}">Post content</p>
+	</article>
+	
+</div>
+
+</body>
+</html>

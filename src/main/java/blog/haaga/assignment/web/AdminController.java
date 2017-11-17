@@ -21,6 +21,7 @@ import blog.haaga.assignment.domain.GenreRepository;
 
 
 
+
 @Controller
 
 public class AdminController {
@@ -34,6 +35,24 @@ public class AdminController {
 		return "login";
 	}
 	
+	@RequestMapping(path="/*")
+	public String index(Discussion discussions,Model model){
+		List<Discussion> latest5Discussions=drepository.findTop5ByOrderByDateDesc();
+		model.addAttribute("latest5discussions",latest5Discussions);
+		
+		List<Discussion> latest3Discussions= (List<Discussion>) drepository.findAllByOrderByIdDesc();
+		model.addAttribute("latest3discussions",latest3Discussions);
+		
+		return "index";
+	}
+	@RequestMapping(value="/posts/view/{id}", method=RequestMethod.GET)
+	public String viewPost(@PathVariable("id") Long id, Model model){
+		
+		
+		model.addAttribute("discussion",drepository.findOne(id));
+		
+		return "view";
+	}
 	@RequestMapping(value = "/blog")
 	public String bloggers(Model model) {
 		model.addAttribute("discussions", drepository.findAll());

@@ -10,7 +10,7 @@
     <h1 align ="center">Edit book</h1>
 	<div class ="container-fluid">
 	
-	<form th:object="${discussion}" th:action="@{../savenew}" action="#" method="post">
+	<form th:object="${discussion}" th:action="@{../save}" action="#" method="post">
 		<input type="hidden" th:field="*{id}" class="form-control"/>
 		<table class="table table-bordered">
 		<tr>
@@ -19,6 +19,7 @@
 		    <th>Artist</th>
 		    <th>Album</th>
 		    <th>Genre</th>
+		    <th>Catch phrase</th>
 		    <th>Thoughts</th>
 		    <th>Action</th>
 		  </tr>
@@ -30,9 +31,10 @@
 	   <td><select id = "ctlist" th:field="*{genre}" class= "form-control">
 			<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
 				</select></td>
+				 <td> <input type="text" th:field="*{catchphrase}" /></td>
 	  <td>
     	
-    		<textarea   rows="4" cols="50"  readonly="readonly"  th:text="${discussion.thought}" >
+    		<textarea   rows="4" cols="50"    th:field="*{thought}" >
     		    		
     		</textarea >
     		</td>

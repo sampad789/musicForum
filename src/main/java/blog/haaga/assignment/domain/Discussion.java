@@ -1,5 +1,7 @@
 package blog.haaga.assignment.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,22 +34,30 @@ public class Discussion {
     @Column (length=1000000)
     @Lob
     @NotNull
-    @Size(min = 1, max = 100000)
     private String thought;
-   
+    
+    @NotNull
+    @Size(min=2, max=30)
+    private String catchphrase;
+  
+    @Column(nullable=false)
+	private Date date= new Date();
+    
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "genreid")
     private Genre genre;
 
-    public Discussion() {}
+   
+	public Discussion() {}
 
-	public Discussion(String name,String email,String album,String artist, String thought,Genre genre) {
+	public Discussion(String name,String email,String album,String artist, String thought, String catchphrase,Genre genre) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.album = album;
 		this.artist = artist;
+		this.catchphrase = catchphrase;
 		this.thought = thought;
 		this.genre = genre;
 	}
@@ -96,6 +106,14 @@ public class Discussion {
 		return thought;
 	}
 
+	public String getCatchphrase() {
+		return catchphrase;
+	}
+
+	public void setCatchphrase(String catchphrase) {
+		this.catchphrase = catchphrase;
+	}
+
 	public void setThought(String thought) {
 		this.thought = thought;
 	}
@@ -103,6 +121,15 @@ public class Discussion {
 	public Genre getGenre() {
 		return genre;
 	}
+	
+	 public Date getDate() {
+			return date;
+		}
+
+		public void setDate(Date date) {
+			this.date = date;
+		}
+
 
 	public void setGenre(Genre genre) {
 		this.genre = genre;
@@ -111,7 +138,8 @@ public class Discussion {
 	@Override
 	public String toString() {
 		return "Discussion [id=" + id + ", name=" + name + ", email=" + email + ", album=" + album + ", artist="
-				+ artist + ", thought=" + thought + ", genre=" + genre + "]";
+				+ artist + ", thought=" + thought + ", catchphrase=" + catchphrase + ", date=" + date + ", genre="
+				+ genre + "]";
 	}
 
 	

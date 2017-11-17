@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
 <title>Start page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -61,6 +61,7 @@ span.align-right {
 		<div class="container-fluid">
 			<h3 th:inline="text" align="center">Welcome To Musify
 				-[[${#httpServletRequest.remoteUser}]]</h3>
+					<p>Now is <b th:text="${execInfo.now.time}"></b></p> 
 			<hr
 				style="height: 13px; border: none; color: #333; background-color: #333;" />
 			<span class="align-right"> <a href="/add"
@@ -84,7 +85,7 @@ span.align-right {
 				</tr>
 				<tr>
 					<th>Genre:</th>
-					<td th:text="${discussion.genre}"></td>
+					<td th:text="${discussion.genre.name}"></td>
 				</tr>
 				<tr>
 					<th>Album:</th>
@@ -95,20 +96,28 @@ span.align-right {
 					<td th:text="${discussion.artist}"></td>
 				</tr>
 				<tr>
+					<th>Catch Phrase:</th>
+					<td th:text="${discussion.catchphrase}"></td>
+				</tr>
+				<tr>
 					<th>Your Thoughts:</th>
-					<td><textarea rows="10" cols="100" readonly="readonly" style="background-color:Black; color:Lime;"
+					<td><textarea rows="15" cols="100" readonly="readonly" style="background-color:Black; color:Lime;"
 							th:text="${discussion.thought}">
     		    		
     		</textarea></td>
+    		
 				<tr class="spaceUnder">
-
-					<td><a th:href="@{/delete/{id}(id=${discussion.id})}"
-						class="btn btn-danger">Delete</a> <a
-						th:href="@{/edit/{id}(id=${discussion.id})}"
+					
+					
+					
+					
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${discussion.id})}"
+						class="btn btn-danger">Delete</a>
+						 <a th:href="@{/edit/{id}(id=${discussion.id})}"
 						class="btn btn-success"> Edit</a></td>
 
 				</tr>
-
+			
 				</tr>
 				</tr>
 

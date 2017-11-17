@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	
+    <title>sam Blog</title>
+</head>
+<body>
+
+
+<div class="container">
+	<h1>Welcome to Blog Site</h1>
+	<p>Today is <b th:text="${execInfo.now.time}"></b></p>   	
+	
+	<div class="row">
+	<!-- List latest 5 post -->
+	<aside class="col-md-3">
+		<h2>Recent Posts</h2>
+		<a href="#" th:each="p:${latest5discussions}" th:text="${p.catchphrase}" th:href="@{/posts/view/{id}/(id=${p.id})}">List</a>
+	</aside>
+	
+	<div id="latest3" class="col-md-8">
+		<article th:each="p: ${latest3discussions}" class="well">
+			<h2 class="title" th:text="${p.catchphrase}">Post title</h2>
+			<h3 class ="title" th:text ="${p.album}">album</h3>
+			<div class="date">
+				<i>Posted on </i><span th:text="${#dates.format(p.date,'dd-MM-yyyy')}">22-10-2017</span>
+				
+			</div>
+			
+		</article>
+	</div>
+	</div>
+</div>
+
+</body>
+</html>
