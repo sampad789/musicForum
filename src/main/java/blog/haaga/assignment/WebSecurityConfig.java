@@ -38,8 +38,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .permitAll();
     }
     
+
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+	  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	    auth
+	      .inMemoryAuthentication()
+	        .withUser("user").password("password").roles("USER")
+	        .and()
+	        .withUser("admin").password("password").roles("ADMIN");
+	    auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+	  }
 }

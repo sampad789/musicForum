@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
 <head>
 <title>Start page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -18,14 +19,10 @@ span {
 
 span.align-right {
 	text-align: right;
-	}
-	
-	body {
-	  
-    background-color: #cccccc;
-	
-	
-	
+}
+
+body {
+	background-color: #cccccc;
 }
 </style>
 
@@ -61,13 +58,15 @@ span.align-right {
 		<div class="container-fluid">
 			<h3 th:inline="text" align="center">Welcome To Musify
 				-[[${#httpServletRequest.remoteUser}]]</h3>
-					<p>Now is <b th:text="${execInfo.now.time}"></b></p> 
+			<p>
+				Today is <b th:text="${execInfo.now.time}"></b>
+			</p>
 			<hr
 				style="height: 13px; border: none; color: #333; background-color: #333;" />
 			<span class="align-right"> <a href="/add"
 				class="btn btn-success">Add New Discussion to the forum</a>
 			</span>
-			
+
 
 			<table id="table1">
 				<tr>
@@ -76,12 +75,15 @@ span.align-right {
 
 				<tr th:each="discussion: ${discussions}">
 				<tr>
-					<th>Name:</th>
-					<td th:text="${discussion.name}"></td>
+					<td><i>Posted on: </i> <span th:text="${#dates.format(discussion.date,'dd-MM-yyyy')}">20-10-2017</span>
+					</td>
+					
 				</tr>
 				<tr>
-					<th>Email:</th>
-					<td th:text="${discussion.email}"></td>
+				<td>
+				<i>Post By</i> : <b><span th:text="${discussion.name}"></span></b>
+					
+				</td>
 				</tr>
 				<tr>
 					<th>Genre:</th>
@@ -101,23 +103,24 @@ span.align-right {
 				</tr>
 				<tr>
 					<th>Your Thoughts:</th>
-					<td><textarea rows="15" cols="100" readonly="readonly" style="background-color:Black; color:Lime;"
+					<td><textarea rows="15" cols="100" readonly="readonly"
+							style="background-color: Black; color: Lime;"
 							th:text="${discussion.thought}">
     		    		
     		</textarea></td>
-    		
 				<tr class="spaceUnder">
-					
-					
-					
-					
-					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${discussion.id})}"
-						class="btn btn-danger">Delete</a>
-						 <a th:href="@{/edit/{id}(id=${discussion.id})}"
+
+
+
+
+					<td sec:authorize="hasRole('ADMIN')"><a
+						th:href="@{/delete/{id}(id=${discussion.id})}"
+						class="btn btn-danger">Delete</a> <a
+						th:href="@{/edit/{id}(id=${discussion.id})}"
 						class="btn btn-success"> Edit</a></td>
 
 				</tr>
-			
+
 				</tr>
 				</tr>
 

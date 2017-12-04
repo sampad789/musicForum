@@ -15,8 +15,10 @@
 			<i>.By</i>
 			<span th:text="${discussion.name}"></span>
 		</div>
-		
-		<p th:utext="${discussion.thought}">Post content</p>
+		<p th:utext="${discussion.artist}"> Artist: </p>
+	<textarea rows="15" cols="100" readonly="readonly" style="background-color:Black; color:Lime;"
+							th:utext="${discussion.thought}">
+							</textarea>
 	</article>
 	
 </div>

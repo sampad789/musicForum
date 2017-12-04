@@ -44,7 +44,7 @@ public class AssignmentApplication {
 			
 
 		log.info("Starting a example discussion.");
-			drepository.save(new Discussion("josiah singh", "jsingh@gmail.com", "Cowboys From Hell",
+			drepository.save(new Discussion("josiah", "jsingh@gmail.com", "Cowboys From Hell",
 					"Pantera", "This is just a demo for the topics to be used for the discussions","Great rock album",grepository.findByName("Metal").get(0)));
 			drepository.save(new Discussion("josiah singh", "jsingh@gmail.com", "Cowboys From Hell",
 					"Pantera", "This is just a demo for the topics to be used for the discussions","Great rock album",grepository.findByName("EDM").get(0)));
