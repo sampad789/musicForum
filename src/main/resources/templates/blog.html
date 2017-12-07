@@ -113,10 +113,10 @@ body {
 
 
 
-					<td sec:authorize="hasRole('ADMIN')"><a
-						th:href="@{/delete/{id}(id=${discussion.id})}"
+					<td > <a
+						th:href="@{/delete/{id}(id=${discussion.id})}" sec:authorize ="hasRole('ADMIN')"
 						class="btn btn-danger">Delete</a> <a
-						th:href="@{/edit/{id}(id=${discussion.id})}"
+						th:href="@{/edit/{id}(id=${discussion.id})}" 
 						class="btn btn-success"> Edit</a></td>
 
 				</tr>

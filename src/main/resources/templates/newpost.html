@@ -5,7 +5,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
+	<style type="text/css">
+
+
+body {
+	background-color: #cccccc;
+}
+</style>
 </head>
+
+	<div class="navbar navbar-inverse navbar-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/blog">Home</a>
+			</div>
+			
+			<div class="col-md-4" style="padding: 20px 0">
+				<form th:action="@{/logout}" method="post">
+					<input type="submit" value="Sign Out" class="btn btn-danger" />
+				</form>
+			</div>
+		</div>
+	</div>
 <body>
 	<div class="Container-fluid">
 		<h1 align="Center">Post your new discussion here.</h1>
